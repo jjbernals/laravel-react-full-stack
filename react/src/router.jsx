@@ -6,12 +6,20 @@ import NotFound from "./views/NotFound.jsx";
 import DefaultLayout from "./components/DefaultLayout.jsx";
 import GuestLayout from "./components/GuestLayout.jsx";
 import Dashboard from "./views/Dashboard.jsx";
+import Team from "./components/Team.jsx";
+
+
+
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <DefaultLayout/>,
         children: [
+            {
+                path: '/team',
+                element: <Team/>
+            },
             {
                 path: '/',
                 element: <Navigate to = "/dashboard"/>
@@ -23,7 +31,8 @@ const router = createBrowserRouter([
             {
                 path: '/user',
                 element: <User/>
-            }
+            },
+
         ]
     },
     {

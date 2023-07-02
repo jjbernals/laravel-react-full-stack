@@ -2,9 +2,10 @@ import {Link, Navigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../contexts/ContextProvider.jsx";
 import {useEffect} from "react";
 import axiosClient from "../axios-client.js";
-import { RiDashboardLine, RiLogoutBoxLine, RiMenu2Fill, RiCloseFill } from "react-icons/ri";
+import {RiDashboardLine, RiLogoutBoxLine, RiMenu2Fill, RiCloseFill, RiGroupLine} from "react-icons/ri";
 import React, {useState} from "react";
 import SideBar from "./SideBar.jsx";
+import {RxPlus} from "react-icons/rx";
 
 export default function DefaultLayout(){
     const {user, token, setUser, setToken} = useStateContext()
@@ -12,7 +13,15 @@ export default function DefaultLayout(){
     if(!token){
         return <Navigate to="/login"/>
     }
+    const onLogout = (ev) => {
+        ev.preventDefault()
 
+        axiosClient.post('/logout')
+            .then(()=>{
+                setUser({})
+                setToken(null)
+            })
+    }
 
     useEffect(()=>{
         axiosClient.get('/user')
@@ -29,8 +38,41 @@ export default function DefaultLayout(){
     return (
     <div className="min-h-screen grid grid-col-1 lg:grid-cols-6">
         {/* sidebar */}
-            <div className={`fixed lg:static w-[80%] md:w-[40%] lg:w-full top-0 z-50 bg-white ${sidebar ? "-left-0": "-left-full"} -left-full w-full h-full overflow-y-scroll col-span-1 p-8 border-r transition-all`}>
-                <SideBar/>
+            <div className={`fixed lg:static w-[59%] lg:w-full top-0 z-50 bg-white ${sidebar ? "-left-0": "-left-full"} w-full h-full overflow-y-scroll col-span-1 p-8 border-r transition-all`}>
+                <div className="text-center p-8">
+                    <h1 className="uppercase font-bold tracking-[4px]"> {user.name}  </h1>
+                </div>
+
+                <div className="flex flex-col justify-between h-[800px]">
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to="/user" className="flex items-center gap-4 hover:bg-violet-500 p-4 text-gray-400 hover:text-white rounded-lg transition-colors font-semibold">
+                                    <RiGroupLine/>
+                                    Mi equipo de trabajo
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/dashboard" className="flex items-center gap-4 hover:bg-violet-500 p-4 text-gray-400 hover:text-white rounded-lg transition-colors font-semibold">
+                                    <RiDashboardLine/>
+                                    Dashboard
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/team" className="flex items-center gap-4 hover:bg-violet-500 p-4 text-gray-400 hover:text-white rounded-lg transition-colors font-semibold">
+                                    <RxPlus/>
+                                    Crear nuevo equipo
+                                </Link>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div className="flex flex-col gap-4">
+                        <a href="#" className="flex items-center gap-4 hover:bg-violet-500 p-4 text-gray-400 hover:text-white rounded-lg transition-colors font-semibold" onClick={onLogout}>
+                            <RiLogoutBoxLine/>
+                            Cerrar Sesion
+                        </a>
+                    </div>
+                </div>
             </div>
 
         {/*Btn Mobile Menu*/}
@@ -38,16 +80,12 @@ export default function DefaultLayout(){
             {sidebar ? <RiCloseFill/> : <RiMenu2Fill/>}
         </button>
         {/* Content */}
-        <div className="col-span-5">
+        <div>
             {/*Header*/}
-            <header>
                 {/*Search*/}
-                <form>
                     <div>
                         <Outlet/>
                     </div>
-                </form>
-            </header>
         </div>
     </div>
 

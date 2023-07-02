@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->dateTime('endDate');
             $table->string('status');
-
+            $table->unsignedBigInteger('idTeam');
             $table->foreign('idTeam')
                 ->references('id')
                 ->on('teams')
