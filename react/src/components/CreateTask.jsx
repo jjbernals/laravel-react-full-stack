@@ -15,7 +15,7 @@ const CreateTask = () =>{
     const newTask = async (e) => {
         e.preventDefault()
         await axios.post('http://localhost:8000/api/task', {name: name, idUser: idUser, description: description, endDate: endDate, idTeam: user.idTeam})
-        navigate('/dashboard')
+        navigate('/tasks')
     }
 
     return(

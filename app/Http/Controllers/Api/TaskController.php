@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -44,6 +45,14 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
+        $user = User::findOrFail($id);
+
+        if($user['rol']=="Administrador")
+        {
+            $task = DB::table('tasks')->select()->where('idTeam', $user['idTeam'])->get();
+            return $task;
+        }
+
         $task = DB::table('tasks')->select()->where('idUser', $id)->get();
         return $task;
     }
