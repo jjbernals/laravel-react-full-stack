@@ -1,29 +1,23 @@
 import {useEffect, useState} from "react";
-import axiosClient from "../axios-client.js";
-import {Link} from "react-router-dom";
 import {RiTeamFill} from "react-icons/ri";
 import {useStateContext} from "../contexts/ContextProvider.jsx";
+import axios from "axios";
+import {RxPlus} from "react-icons/rx";
+import {useNavigate} from "react-router-dom";
 
 
 export default function User(){
     const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(false);
     const {user} = useStateContext()
+    const navigate = useNavigate()
 
     useEffect(() => {
         getUsers()
     }, [])
 
-    const getUsers = () => {
-        setLoading(true);
-        axiosClient.get('/users/'+user.idTeam)
-            .then(({data}) => {
-                setLoading(false);
-                setUsers(data.data);
-            })
-            .catch(() => {
-                setLoading(false)
-            })
+    const getUsers = async () => {
+        const response = await axios.get('http://localhost:8000/api/team/' + user.idTeam)
+        setUsers(response.data)
     }
 
     const verifyStatus = (u) => {
@@ -39,15 +33,25 @@ export default function User(){
         return message
     }
 
+    const newMember = () => {
+        if(user.idTeam ===null){
+            navigate('/team')
+        }
+        else {navigate('/newMember')}
+
+    }
+
+
     return (
         <div className="bg-gray-100  rounded border-2 m-5  lg:w-[490%] ">
-            <div className="text-3xl p-2 mt-10 mb-1 font-semibold flex items-center justify-center">
-                    Mi Equipo de Trabajo
+            <div className="text-3xl mt-10 mb-1 font-semibold flex items-center justify-center">
+                   <h1 className="text-5xl font-semibold bg-purple-100 text-black rounded-l-full p-14 border-r transition-all">
+                       Mi Equipo de Trabajo
+                   </h1>
             </div>
             <div className=" flex items-center justify-center relative py-2 m-8">
                 <div className="mt-4 w-full h-[1px] bg-black"></div>
             </div>
-
             <div>
                     {users.map(u =>(
                         <div className="m-8 bg-white rounded-2xl p-8 flex flex-col md:flex-row gap-8 shadow-lg">
@@ -58,7 +62,7 @@ export default function User(){
                     {/*Title*/}
                     <div className="w-full md:w-[70%]">
                         <h1 className="text-xl flex items-center gap-4 mb-2">{u.name}
-                            <span className={`text-xs py-1 px-2 -100 bg- text-white font-bold`}>aaa</span>
+                            <span className="text-xs py-1 px-2 -100 bg-green-500 text-white rounded font-bold">{u.rol}</span>
                         </h1>
                         <p className="text-gray-500">{u.email}</p>
                     </div>
@@ -70,6 +74,22 @@ export default function User(){
                 </div>
                     ))}
             </div>
+            <form onSubmit={newMember}>
+                <div className="m-8 w-[40%] md:w-[15%] bg-white rounded-2xl p-8 flex flex-col md:flex-row gap-8 shadow-lg">
+                    {/*Icon*/}
+
+                    <div className="w-[100%] flex items-center justify-center ">
+                        <button>
+                            <RxPlus className="active:scale-[.98] active: duration-75 hover:scale-[1.1] ease-in-out transition-all text-7xl bg-purple-100 text-purple-600 p-4 rounded-md"/>
+                        </button>
+                        <div className="w-full md:w-[70%]">
+                            <h1 className="text-xl flex items-center p-4 gap-4 mb-2">
+                                Nuevo miembro
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     )
 }

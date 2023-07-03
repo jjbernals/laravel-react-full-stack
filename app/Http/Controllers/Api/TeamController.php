@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\team;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class TeamController extends Controller
@@ -25,8 +27,18 @@ class TeamController extends Controller
     {
         $team = new team();
         $team->name = $request->name;
-
         $team -> save();
+        $team = DB::table('teams')->latest('id')->first();
+
+        $user = new User();
+        $user->id = $request->id;
+
+        $user = User::findOrFail($user['id']);
+        $user->idTeam = $team->id;
+        $user->rol = "Administrador";
+        $user->save();
+
+        $user = User::findOrFail($user['id']);
     }
 
     /**
@@ -34,7 +46,7 @@ class TeamController extends Controller
      */
     public function show(string $id)
     {
-        $team = team::find($id);
+        $team = DB::table('users')->select()->where('idTeam', $id)->get();
         return $team;
     }
 
@@ -56,4 +68,22 @@ class TeamController extends Controller
     {
         //
     }
+
+    public function newMember(Request $request){
+        $admin = DB::table('users')->select("idTeam")->where("id", $request['id'])->first();
+        $newMember = DB::table('users')->select()->where('email', $request['email'])->first();
+        $user = User::findOrFail($newMember->id);
+
+        if($user->rol=="Administrador"){
+            return;
+        }
+
+        $user->idTeam = $admin->idTeam;
+        $user->rol = "Miembro del equipo";
+
+        $user->save();
+
+        return DB::table('users')->select()->where('email', $request['email'])->first();
+    }
+
 }

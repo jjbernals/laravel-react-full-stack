@@ -38,12 +38,12 @@ export default function DefaultLayout(){
     return (
     <div className="min-h-screen grid grid-col-1 lg:grid-cols-6">
         {/* sidebar */}
-            <div className={`fixed lg:static w-[59%] lg:w-full top-0 z-50 bg-white ${sidebar ? "-left-0": "-left-full"} w-full h-full overflow-y-scroll col-span-1 p-8 border-r transition-all`}>
-                <div className="text-center p-8">
+            <div className={`fixed lg:static w-[71%] lg:w-full top-0 z-50 bg-white ${sidebar ? "-left-0": "-left-full"} w-full h-full overflow-y-scroll col-span-1 p-8 border-r transition-all`}>
+                <div className="text-center p-8 bg-purple-100 rounded-b-full ">
                     <h1 className="uppercase font-bold tracking-[4px]"> {user.name}  </h1>
                 </div>
 
-                <div className="flex flex-col justify-between h-[800px]">
+                <div className="flex flex-col justify-between h-[800px] mt-2">
                     <nav>
                         <ul>
                             <li>
@@ -53,9 +53,9 @@ export default function DefaultLayout(){
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/dashboard" className="flex items-center gap-4 hover:bg-violet-500 p-4 text-gray-400 hover:text-white rounded-lg transition-colors font-semibold">
+                                <Link to="/tasks" className="flex items-center gap-4 hover:bg-violet-500 p-4 text-gray-400 hover:text-white rounded-lg transition-colors font-semibold">
                                     <RiDashboardLine/>
-                                    Dashboard
+                                    Mis tareas y asignaciones
                                 </Link>
                             </li>
                             <li>

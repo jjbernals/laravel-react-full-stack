@@ -36,7 +36,7 @@ class UserController extends Controller
     public function show($user)
     {
 
-        return UserResource::collection(User::query()->orderBy('name')->where("idTeam", $user)->paginate(4));
+        return UserResource::collection(User::query()->orderBy('name')->where("id", $user)->first());
     }
 
     /**
@@ -63,7 +63,5 @@ class UserController extends Controller
         return response( "", 204);
     }
 
-    public function createTeam(){
-        return "a";
-    }
+
 }

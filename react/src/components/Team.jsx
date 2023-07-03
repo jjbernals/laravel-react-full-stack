@@ -1,16 +1,29 @@
 import axios from "axios";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {useStateContext} from "../contexts/ContextProvider.jsx";
+import axiosClient from "../axios-client.js";
 
 
 const Team = () => {
+    const {user, setUser} = useStateContext()
+    const {token, setToken} = useStateContext()
     const [name, setName] = useState('')
+    const [id, setId] = useState(user.id)
     const navigate = useNavigate()
+
+
     const store = async (e) =>{
         e.preventDefault()
-        await axios.post('http://localhost:8000/api/team', {name : name})
-        navigate('/user')
+        await axios.post('http://localhost:8000/api/team', {name : name, id:id})
+        alert('Vuelve a iniciar sesion')
+        axiosClient.post('/logout')
+            .then(()=>{
+                setUser({})
+                setToken(null)
+            })
     }
+
 
     return(
         <div className="rounded m-5  lg:w-[490%]">
@@ -25,6 +38,7 @@ const Team = () => {
                             <div>
                                 <label className="text-lg font-medium">Nombre del equipo</label>
                                 <input className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent" size="50" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre del equipo"/>
+
                             </div>
 
                             <div className="mt-7 flex flex-col gap-y-4">

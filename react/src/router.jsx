@@ -5,8 +5,12 @@ import User from "./views/User.jsx";
 import NotFound from "./views/NotFound.jsx";
 import DefaultLayout from "./components/DefaultLayout.jsx";
 import GuestLayout from "./components/GuestLayout.jsx";
-import Dashboard from "./views/Dashboard.jsx";
 import Team from "./components/Team.jsx";
+import NewMember from "./components/NewMember.jsx";
+import Task from "./components/Task.jsx";
+import CreateTask from "./components/CreateTask.jsx";
+import UploadFile from "./components/UploadFile.jsx";
+import StatusTask from "./components/StatusTask.jsx";
 
 
 
@@ -22,15 +26,31 @@ const router = createBrowserRouter([
             },
             {
                 path: '/',
-                element: <Navigate to = "/dashboard"/>
+                element: <Navigate to = "/user"/>
             },
             {
-                path: '/dashboard',
-                element: <Dashboard/>
+                path: '/tasks',
+                element: <Task/>
             },
             {
                 path: '/user',
                 element: <User/>
+            },
+            {
+                path: '/newMember',
+                element: <NewMember/>
+            },
+            {
+                path: '/newTask',
+                element: <CreateTask/>
+            },
+            {
+                path: '/upload/:id',
+                element: <UploadFile/>
+            },
+            {
+                path: '/status/:id/:status/:rol',
+                element: <StatusTask/>
             },
 
         ]

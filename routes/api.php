@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -30,7 +31,14 @@ Route::middleware('auth:sanctum')->group(function (){
 Route::post('/signup',[AuthController::class, 'signup']);
 Route::post('/login',[AuthController::class, 'login']);
 Route::controller(TeamController::class)->group(function (){
-    Route::get('team', 'index');
-    Route::post('team', 'store');
+    Route::get('/team', 'index');
+    Route::post('/team', 'store');
+    Route::get('/team/{id}', 'show');
+    Route::post('/team/member', 'newMember');
 });
-
+Route::controller(TaskController::class)->group(function () {
+    Route::post('/task', 'store');
+    Route::post('/task/upload/{task}/{file}', 'uploadFiles');
+    Route::get('/task/{id}', 'show');
+    Route::put('/task/{id}/{status}', 'update');
+});
