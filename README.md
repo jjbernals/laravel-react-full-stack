@@ -59,7 +59,11 @@ Para utilizar el proyecto, sigue los siguientes pasos:
 
 ## Características Principales
 
-- Enumera y describe brevemente las características clave de tu proyecto.
+- Sistema robusto de autenticacion y autorizacion
+- Implementacion de equipos y distintos roles
+- Creacion de tasks para realizar los compromisos tributarios
+- Interfaz simplificada
+- Escalable Horizontal y verticalmente
 
 ## Base de Datos
 
@@ -67,6 +71,4 @@ La base de datos utiliza SQL y se encuentra configurada de la siguiente manera:
 
 - Motor de base de datos: MySQL
 - Nombre de la base de datos: projectreactlaravel
-- ...
-
 
