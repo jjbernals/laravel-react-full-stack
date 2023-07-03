@@ -22,6 +22,7 @@ const Team = () => {
                 setUser({})
                 setToken(null)
             })
+
     }
 
 

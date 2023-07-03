@@ -15,6 +15,7 @@ class TeamController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+
     {
         $team = team::all();
         return $team;

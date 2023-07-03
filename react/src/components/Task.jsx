@@ -17,6 +17,7 @@ const Task = () =>{
         getTask()
     }, [])
 
+
     const getTask = async () => {
         const response = await axios.get('http://localhost:8000/api/task/' + user.id)
         setTask(response.data)
