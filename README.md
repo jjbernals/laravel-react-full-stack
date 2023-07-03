@@ -7,60 +7,68 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Proyecto Realizado con Laravel (Back-end) y React (Front-end)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Sistema gestor de compromisos tributarios
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tecnologías Utilizadas
 
-## Learning Laravel
+- Laravel
+- React
+- SQL
+- Tailwind UI
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Configuración del Entorno
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+A continuación se detallan los pasos necesarios para configurar el entorno de desarrollo del proyecto:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Instala PHP y Composer.
+2. Clona el repositorio de GitHub: `git clone https://github.com/tu-usuario/tu-proyecto.git`.
+3. Navega hasta la carpeta del proyecto: `cd tu-proyecto`.
+4. Instala las dependencias de Laravel: `composer install`.
+5. Copia el archivo `.env.example` a `.env` y configura las variables de entorno necesarias.
+6. Genera una nueva clave de aplicación: `php artisan key:generate`.
+7. Ejecuta las migraciones de la base de datos: `php artisan migrate`.
+8. Inicia el servidor de desarrollo: `php artisan serve`.
 
-## Laravel Sponsors
+## Instalación
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+A continuación se detallan los pasos necesarios para instalar el proyecto:
 
-### Premium Partners
+1. Clona el repositorio de GitHub: `git clone https://github.com/jjbernals/laravel-react-full-stack/edit/master/README.md`.
+2. Navega hasta la carpeta del proyecto: `cd react`.
+3. Instala las dependencias de React: `npm install`.
+4. Configura la conexión a la base de datos en el archivo `.env`.
+5. Ejecuta las migraciones de la base de datos: `php artisan migrate`.
+6. Inicia el servidor de desarrollo de React: `npm start`.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
+- **app/**: Contiene los controladores y modelos de Laravel.
+- **database/**: Contiene las migraciones y seeders de la base de datos.
+- **resources/**: Contiene los archivos de React y las vistas de Blade.
+- **routes/**: Contiene las rutas de Laravel.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Uso
 
-## Code of Conduct
+Para utilizar el proyecto, sigue los siguientes pasos:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Ejecuta el comando `php artisan serve` para iniciar el servidor de Laravel.
+2. Ejecuta el comando `npm start` para iniciar el servidor de desarrollo de React.
+3. Abre tu navegador y accede a `http://localhost:8000` para ver la aplicación en funcionamiento.
 
-## Security Vulnerabilities
+## Características Principales
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Sistema robusto de autenticacion y autorizacion
+- Implementacion de equipos y distintos roles
+- Creacion de tasks para realizar los compromisos tributarios
+- Interfaz simplificada
+- Escalable Horizontal y verticalmente
 
-## License
+## Base de Datos
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+La base de datos utiliza SQL y se encuentra configurada de la siguiente manera:
+
+- Motor de base de datos: MySQL
+- Nombre de la base de datos: projectreactlaravel
+
